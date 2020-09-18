@@ -2,9 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="64333938-ee6b-4be2-8ee5-3305c1b34e61" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/src/Controller/SessionController.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/templates/session/index.html.twig" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/templates/testPages/test.html.twig" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/session/index.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/session/index.html.twig" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -160,7 +160,8 @@
       <workItem from="1600244293036" duration="1367000" />
       <workItem from="1600246495002" duration="4649000" />
       <workItem from="1600273835778" duration="608000" />
-      <workItem from="1600327889777" duration="4710000" />
+      <workItem from="1600327889777" duration="5853000" />
+      <workItem from="1600417376165" duration="4965000" />
     </task>
     <servers />
   </component>
@@ -184,5 +185,16 @@
       <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state x="425" y="187" key="run.anything.popup/0.0.1536.824@0.0.1536.824" timestamp="1600251682964" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="php">
+          <url>file://$PROJECT_DIR$/templates/todo/index.html.twig</url>
+          <line>1</line>
+          <option name="timeStamp" value="1" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
   </component>
 </project>
