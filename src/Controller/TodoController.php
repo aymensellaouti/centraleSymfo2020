@@ -6,10 +6,16 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
 
+
+/**
+ * Class TodoController
+ * @package App\Controller
+ * @Route("todo")
+ */
 class TodoController extends AbstractController
 {
     /**
-     * @Route("/todo", name="todo")
+     * @Route("/", name="todo")
      */
     public function index(Request $request)
     {
@@ -38,7 +44,12 @@ class TodoController extends AbstractController
     }
 
     /**
-     * @Route("/todo/add/{name}/{content}", name="todo.add")
+     * @Route(
+     *     "/add/{name}/{content}",
+     *      name="todo.add",
+     *      requirements={"name":"[0-1]?\d{1,2}"},
+     *      defaults={"content":"Dormir", "name":"dimanche"}
+     * )
      */
     public function addTodo($name, $content, Request $request) {
         /*
@@ -80,7 +91,7 @@ class TodoController extends AbstractController
         return $this->redirectToRoute('todo');
     }
     /**
-     * @Route("/todo/update/{name}/{content}", name="todo.update")
+     * @Route("/update/{name}/{content}", name="todo.update")
      */
     public function updateTodo($name, $content, Request $request) {
         /*
@@ -123,7 +134,7 @@ class TodoController extends AbstractController
     }
 
     /**
-     * @Route("/todo/delete/{name}", name="todo.delete")
+     * @Route("/delete/{name}", name="todo.delete")
      */
     public function deleteTodo($name, Request $request) {
         /*
@@ -164,7 +175,4 @@ class TodoController extends AbstractController
         }
         return $this->redirectToRoute('todo');
     }
-
-
-
 }
