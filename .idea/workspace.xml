@@ -2,9 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="64333938-ee6b-4be2-8ee5-3305c1b34e61" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/templates/testPages/test.html.twig" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/session/index.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/session/index.html.twig" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Controller/TodoController.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/TodoController.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -161,7 +160,8 @@
       <workItem from="1600246495002" duration="4649000" />
       <workItem from="1600273835778" duration="608000" />
       <workItem from="1600327889777" duration="5853000" />
-      <workItem from="1600417376165" duration="4965000" />
+      <workItem from="1600417376165" duration="5228000" />
+      <workItem from="1600673569780" duration="2492000" />
     </task>
     <servers />
   </component>
