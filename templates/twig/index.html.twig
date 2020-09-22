@@ -6,17 +6,32 @@
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Document</title>
+    <link
+            rel="stylesheet"
+            href="https://stackpath.bootstrapcdn.com/bootswatch/4.5.2/cyborg/bootstrap.min.css"
+    >
 </head>
 <body>
-    Mon nom est {{ nom|upper }} et la taille est {{ nom|length }}
-    <br>
-    J'ai {{ age }} ans.
-    <div>
-        {% for element in monTableau %}
-            <div>
-                {{ element }}
-            </div>
-        {% endfor %}
+    <div class="container">
+        <table class="table" border="2">
+            {% for element in monTableauDentier %}
+                <tr>
+                    <td>
+                        {{ element }}
+                    </td>
+                </tr>
+            {% endfor %}
+        </table>
+        <div class="alert alert-warning">
+            Nombre déléments du tableau : {{ monTableauDentier|length }}
+        </div>
+        <div class="alert alert-primary">
+            Le max du tableau est {{ max(monTableauDentier) }}
+        </div>
+        <div class="alert alert-danger">
+            Le min du tableau est {{ min(monTableauDentier) }}
+        </div>
     </div>
+
 </body>
 </html>

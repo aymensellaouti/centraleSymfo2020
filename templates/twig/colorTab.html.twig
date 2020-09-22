@@ -1,0 +1,52 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <link
+            rel="stylesheet"
+            href="https://stackpath.bootstrapcdn.com/bootswatch/4.5.2/cyborg/bootstrap.min.css"
+    >
+</head>
+<body>
+<div class="container">
+    <table class="table" border="2">
+        <thead>
+        <tr class="table-dark">
+            <th scope="col">Name</th>
+            <th scope="col">Firstname</th>
+            <th scope="col">Age</th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for user in colorTab  %}
+            <tr
+                class="
+                {% if loop.index is odd %}
+                    table-danger
+                    {% else %}
+                    table-warning
+                {% endif %}
+                "
+            >
+                <td>
+                    {{ user.name }}
+                </td>
+                <td>
+                    {{ user.firstname }}
+                </td>
+                <td>
+                    {{ user.age }}
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+</div>
+
+</body>
+</html>
