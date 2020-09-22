@@ -39,4 +39,18 @@ class TwigController extends AbstractController
            'colorTab' => $users
         ]);
     }
+
+    /**
+     * @Route("/heritage", name="heritage.example")
+     */
+    function heritage() {
+        return $this->render('twig/testHeritage.html.twig');
+    }
+    /**
+     * @Route("/template", name="heritage.template")
+     */
+    function template() {
+        return $this->render('template.html.twig');
+    }
+
 }

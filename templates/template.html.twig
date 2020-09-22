@@ -9,18 +9,14 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>
-        {% block title %}
-            SB Admin - Blank Page
-        {% endblock %}
-    </title>
+    <title>SB Admin - Blank Page</title>
 
     <!-- Bootstrap core CSS-->
+    <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
 
-    <link rel="stylesheet" href="{{ asset('node_modules/bootstrap/dist/css/bootstrap.css') }}">
-    <link href="{{ asset('node_modules/@fortawesome/fontawesome-free/css/all.min.css') }}">
     <!-- Custom styles for this template-->
-    <link href="{{ asset('css/sb-admin.css') }}" rel="stylesheet">
+    <link href="css/sb-admin.css" rel="stylesheet">
+
 </head>
 
 <body id="page-top">
@@ -133,23 +129,14 @@
                 <li class="breadcrumb-item">
                     <a href="index.html">Dashboard</a>
                 </li>
-                <li class="breadcrumb-item active">
-                    {% block fileAriane %}
-                        Blank Page
-                    {% endblock %}
-                </li>
+                <li class="breadcrumb-item active">Blank Page</li>
             </ol>
 
             <!-- Page Content -->
-            <h1>
-            {% block pageTitle %}
-                Blank Page
-            {% endblock %}
-            </h1>
+            <h1>Blank Page</h1>
             <hr>
-            {% block body %}
             <p>This is a great starting point for new custom pages.</p>
-            {% endblock %}
+
         </div>
         <!-- /.container-fluid -->
 
@@ -192,10 +179,9 @@
     </div>
 </div>
 
-<!-- Bootstrap core JavaScript-->
-<script src="{{ asset('node_modules/jquery/dist/jquery.js') }}"></script>
+
 <!-- Custom scripts for all pages-->
-<script src="{{ asset('js/sb-admin.js') }}"></script>
+<script src="js/sb-admin.min.js"></script>
 
 </body>
 
