@@ -15,7 +15,7 @@ use Symfony\Component\Routing\Annotation\Route;
 class TodoController extends AbstractController
 {
     /**
-     * @Route("/", name="todo")
+     * @Route("/all", name="todo")
      */
     public function index(Request $request)
     {

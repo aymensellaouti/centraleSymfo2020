@@ -21,6 +21,9 @@
         {% for titre, contenu in app.session.get('mesTodos')%}
             <li class="list-group-item">
                 {{ titre }} : {{ contenu }}
+                <a href="{{ path('todo.delete', {name: titre}) }}">Supprimer</a>
+                <a href="{{ url('todo.delete', {name: titre}) }}">Supprimer</a>
+            </li>
             </li>
         {% endfor %}
         </ol>
