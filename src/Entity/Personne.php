@@ -3,6 +3,8 @@
 namespace App\Entity;
 
 use App\Repository\PersonneRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -31,6 +33,21 @@ class Personne
      * @ORM\Column(type="smallint")
      */
     private $age;
+
+    /**
+     * @ORM\ManyToMany(targetEntity=Hobbies::class)
+     */
+    private $hobbies;
+
+    /**
+     * @ORM\ManyToOne(targetEntity=Tuteur::class, inversedBy="personnes")
+     */
+    private $tuteur;
+
+    public function __construct()
+    {
+        $this->hobbies = new ArrayCollection();
+    }
 
     public function getId(): ?int
     {
@@ -69,6 +86,44 @@ class Personne
     public function setAge(int $age): self
     {
         $this->age = $age;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Hobbies[]
+     */
+    public function getHobbies(): Collection
+    {
+        return $this->hobbies;
+    }
+
+    public function addHobby(Hobbies $hobby): self
+    {
+        if (!$this->hobbies->contains($hobby)) {
+            $this->hobbies[] = $hobby;
+        }
+
+        return $this;
+    }
+
+    public function removeHobby(Hobbies $hobby): self
+    {
+        if ($this->hobbies->contains($hobby)) {
+            $this->hobbies->removeElement($hobby);
+        }
+
+        return $this;
+    }
+
+    public function getTuteur(): ?Tuteur
+    {
+        return $this->tuteur;
+    }
+
+    public function setTuteur(?Tuteur $tuteur): self
+    {
+        $this->tuteur = $tuteur;
 
         return $this;
     }
