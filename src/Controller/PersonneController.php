@@ -3,7 +3,9 @@
 namespace App\Controller;
 
 use App\Entity\Personne;
+use App\Form\PersonneType;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
@@ -32,9 +34,9 @@ class PersonneController extends AbstractController
     }
 
     /**
-     * @Route("/add/{name?sellaouti}/{firstname?aymen}/{age?38}", name="personne.add")
+     * @Route("/add2/{name?sellaouti}/{firstname?aymen}/{age?38}", name="personne.add2")
      */
-    public function addPersonne($name, $firstname, $age) {
+    public function addPersonne2($name, $firstname, $age) {
         //je récupére l'objet doctrine
         $doctrine = $this->getDoctrine();
         //Je récupére le manager de Doctrine
@@ -50,16 +52,6 @@ class PersonneController extends AbstractController
         return $this->redirectToRoute('personne');
     }
 
-    /**
-     * @Route("/{id}", name="personne.detail")
-     */
-    public function detailPersonne($id)
-    {
-        $personne = $this->findPersonneById($id);
-        return $this->render('personne/detail.html.twig', [
-            'personne' => $personne,
-        ]);
-    }
 
     /**
      * @Route("/update/{id}/{name?sellaouti}/{firstname?aymen}/{age?38}", name="personne.update")
@@ -114,4 +106,40 @@ class PersonneController extends AbstractController
         $personne = $repository->find($id);
         return ($personne);
     }
+
+    /**
+     * @Route("/add/{id?0}", name="personne.add")
+     */
+    public function addPersonne(Request $request, $id) {
+        //Je vais créer l'objet qui correspond à mon Formulaire
+        $personne = $this->findPersonneById($id);
+        if(!$personne) {
+            $personne = new Personne();
+        }
+        $form = $this->createForm(PersonneType::class, $personne);
+        $form->handleRequest($request);
+        if ($form->isSubmitted()) {
+            $manager= $this->getDoctrine()->getManager();
+            $manager->persist($personne);
+            $manager->flush();
+            $this->addFlash('success', $personne->getFirstname(). ' '. $personne->getName()." ajouté avec succçès");
+            // va vers la fonction qui liste les personnes
+            return $this->redirectToRoute('personne');
+        }
+        return $this->render('personne/add.html.twig', [
+            'form' => $form->createView()
+        ]);
+    }
+
+    /**
+     * @Route("/{id<\d+>}", name="personne.detail")
+     */
+    public function detailPersonne($id)
+    {
+        $personne = $this->findPersonneById($id);
+        return $this->render('personne/detail.html.twig', [
+            'personne' => $personne,
+        ]);
+    }
+
 }
