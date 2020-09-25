@@ -147,9 +147,24 @@
             {% endblock %}
             </h1>
             <hr>
-            {% block body %}
-            <p>This is a great starting point for new custom pages.</p>
-            {% endblock %}
+                {% for message in app.session.flashBag.get('info') %}
+                    <div class="alert alert-info">
+                        {{ message }}
+                    </div>
+                {% endfor %}
+                {% for message in app.session.flashBag.get('error') %}
+                    <div class="alert alert-danger">
+                        {{ message }}
+                    </div>
+                {% endfor %}
+                {% for message in app.session.flashBag.get('success') %}
+                    <div class="alert alert-success">
+                        {{ message }}
+                    </div>
+                {% endfor %}
+                {% block body %}
+                    <p>This is a great starting point for new custom pages.</p>
+                {% endblock %}
         </div>
         <!-- /.container-fluid -->
 

@@ -7,32 +7,89 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
+
+/**
+ * Class PersonneController
+ * @package App\Controller
+ * @Route("/personne")
+ */
 class PersonneController extends AbstractController
 {
     /**
-     * @Route("/personne", name="personne")
+     * @Route("/", name="personne")
      */
     public function index()
     {
+        //Je dois récupérer mon Repository qui s'occupe des personnes
+        $repository = $this->getDoctrine()->getRepository(Personne::class);
+
+        //Je veux récupérer toutes les personnes de la base de données
+        $personnes = $repository->findAll();
+
         return $this->render('personne/index.html.twig', [
-            'controller_name' => 'PersonneController',
+            'personnes' => $personnes,
         ]);
     }
 
     /**
-     * @Route("/personne/add", name="personne.add")
+     * @Route("/add/{name?sellaouti}/{firstname?aymen}/{age?38}", name="personne.add")
      */
-    public function addPersonne() {
+    public function addPersonne($name, $firstname, $age) {
         //je récupére l'objet doctrine
         $doctrine = $this->getDoctrine();
         //Je récupére le manager de Doctrine
         $manager = $doctrine->getManager();
         $personne = new Personne();
-        $personne->setName('sellaouti');
-        $personne->setFirstname('aymen');
-        $personne->setAge(38);
+        $personne->setName($name);
+        $personne->setFirstname($firstname);
+        $personne->setAge($age);
         $manager->persist($personne);
         $manager->flush();
-        return new Response('<html><body><h1>Test ajout personne</h1></body></html>');
+        $this->addFlash('success', "${firstname} ${name} ajouté avec succçès");
+        // va vers la fonction qui liste les personnes
+        return $this->redirectToRoute('personne');
+    }
+
+    /**
+     * @Route("/{id}", name="personne.detail")
+     */
+    public function detailPersonne($id)
+    {
+        $personne = $this->findPersonneById($id);
+        return $this->render('personne/detail.html.twig', [
+            'personne' => $personne,
+        ]);
+    }
+
+    /**
+     * @Route("/update/{id}/{name?sellaouti}/{firstname?aymen}/{age?38}", name="personne.update")
+     */
+    public function updatePersonne($name, $firstname, $age, $id) {
+        // Je récupére la personne à modifier
+        $personne = $this->findPersonneById($id);
+        // S'il existe
+            // Je mets à jour les champs
+        if ($personne) {
+            $manager = $this->getDoctrine()->getManager();
+            $personne->setAge($age);
+            $personne->setName($name);
+            $personne->setFirstname($firstname);
+            $manager->persist($personne);
+            $manager->flush();
+            $this->addFlash('success', "Personne d'id ${id} a été modifié avec succçès");
+        } else {
+            // sinon
+            // Message d'erreur
+            $this->addFlash('error', "Personne d'id ${id} n'existe pas");
+        }
+        return $this->redirectToRoute('personne');
+    }
+
+    function findPersonneById($id) {
+        //Je dois récupérer mon Repository qui s'occupe des personnes
+        $repository = $this->getDoctrine()->getRepository(Personne::class);
+        //Je veux récupérer toutes les personnes de la base de données
+        $personne = $repository->find($id);
+        return ($personne);
     }
 }

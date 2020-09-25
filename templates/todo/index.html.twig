@@ -1,21 +1,6 @@
 {% extends 'base.html.twig' %}
 {% block body %}
-    <div class="container">
-        {% for message in app.session.flashBag.get('info') %}
-            <div class="alert alert-info">
-                {{ message }}
-            </div>
-        {% endfor %}
-        {% for message in app.session.flashBag.get('error') %}
-            <div class="alert alert-danger">
-                {{ message }}
-            </div>
-        {% endfor %}
-        {% for message in app.session.flashBag.get('success') %}
-            <div class="alert alert-success">
-                {{ message }}
-            </div>
-        {% endfor %}
+
         <h1>Liste des todos :</h1>
         <ol class="list-group">
         {% for titre, contenu in app.session.get('mesTodos')%}
@@ -27,7 +12,6 @@
             </li>
         {% endfor %}
         </ol>
-    </div>
 {% endblock %}
 
 {% block pageTitle %}
