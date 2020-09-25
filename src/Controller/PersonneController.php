@@ -85,6 +85,28 @@ class PersonneController extends AbstractController
         return $this->redirectToRoute('personne');
     }
 
+    /**
+     * @Route("/delete/{id}", name="personne.delete")
+     */
+    public function deletePersonne($id) {
+        // Je récupére la personne à supprimer
+        $personne = $this->findPersonneById($id);
+        // S'il existe
+        // Je supprime
+        if ($personne) {
+            $manager = $this->getDoctrine()->getManager();
+            $manager->remove($personne);
+            $manager->flush();
+            $this->addFlash('success', "Personne d'id ${id} a été supprimé avec succçès");
+        } else {
+            // sinon
+            // Message d'erreur
+            $this->addFlash('error', "Personne d'id ${id} n'existe pas");
+        }
+        return $this->redirectToRoute('personne');
+    }
+
+
     function findPersonneById($id) {
         //Je dois récupérer mon Repository qui s'occupe des personnes
         $repository = $this->getDoctrine()->getRepository(Personne::class);
